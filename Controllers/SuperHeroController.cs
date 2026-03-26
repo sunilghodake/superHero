@@ -9,7 +9,7 @@ namespace superHero.Controllers
     public class SuperHeroController : ControllerBase
     {
         private readonly ISuperHeroServices _superHeroServices;
-       public SuperHeroController(ISuperHeroServices superHeroServices)
+        public SuperHeroController(ISuperHeroServices superHeroServices)
         {
             this._superHeroServices = superHeroServices;
         }
@@ -18,11 +18,11 @@ namespace superHero.Controllers
         public async Task<ActionResult<List<SuperHero>>> GetSuperHeroes()
         {
             return Ok(await _superHeroServices.GetSuperHeroesAsync());
-        } 
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<SuperHero>> GetSuperHeroesById(int id)
         {
-           SuperHero?  superHero =await _superHeroServices.GetSuperHeroesByIdAsync(id);
+            SuperHero? superHero = await _superHeroServices.GetSuperHeroesByIdAsync(id);
             if (superHero == null)
                 return NotFound("superHero not found for this id ");
             return Ok(superHero);
@@ -34,9 +34,9 @@ namespace superHero.Controllers
             return Ok(await _superHeroServices.AddSuperHeroesAsync(hero));
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<SuperHero>>> UpdateSuperHero(int id,SuperHero newHero)
+        public async Task<ActionResult<List<SuperHero>>> UpdateSuperHero(int id, SuperHero newHero)
         {
-            var heroes = await _superHeroServices.UpdateSuperHeroAsync(id,newHero);
+            var heroes = await _superHeroServices.UpdateSuperHeroAsync(id, newHero);
             if (heroes == null)
                 return NotFound("superheroes not found for this id");
             return Ok(heroes);
@@ -48,8 +48,7 @@ namespace superHero.Controllers
             var heroes = await _superHeroServices.DeleteSuperHeroAsync(id);
             if (heroes == null)
                 return NotFound("superHero not found for this id ");
-          
-           
+
             return Ok(heroes);
         }
     }
